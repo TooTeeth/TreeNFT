@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       <Header signer={signer} setSigner={setSigner} />
-      <Main />
+      <Main treeNFTContract={treeNFTContract} />
     </>
   );
 }

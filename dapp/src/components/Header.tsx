@@ -1,8 +1,7 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { JsonRpcSigner } from "ethers";
 import { ethers } from "ethers";
 import { Dispatch, SetStateAction } from "react";
-import { FaTree } from "react-icons/fa6";
 
 interface HeaderProps {
   signer: JsonRpcSigner | null;
@@ -27,10 +26,9 @@ function Header({ signer, setSigner }: HeaderProps) {
 
   return (
     <Box as="header" bgColor="blue.100" p={4}>
-      <Flex maxW={1024} mx="auto" bgColor="red.100" alignItems="center" justifyContent="space-between">
+      <Flex maxW={1024} mx="auto" bgColor="green.100" alignItems="center" justifyContent="space-between">
         <Flex fontSize="2xl" fontWeight="semibold" alignItems="center" gap={2} color="green.600">
-          <FaTree />
-          Tree NFT
+          <Image src="\public\image-removebg-preview.png" maxW={20}></Image>
         </Flex>
         <Box>
           {signer ? (
