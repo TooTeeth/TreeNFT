@@ -1,11 +1,15 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { ethers, JsonRpcSigner } from "ethers";
-import { useEffect, useState } from "react";
+import { JsonRpcSigner } from "ethers";
+import { ethers } from "ethers";
+import { Dispatch, SetStateAction } from "react";
 import { FaTree } from "react-icons/fa6";
 
-function Header() {
-  const [signer, setSigner] = useState<JsonRpcSigner | null>(null);
+interface HeaderProps {
+  signer: JsonRpcSigner | null;
+  setSigner: Dispatch<SetStateAction<JsonRpcSigner | null>>;
+}
 
+function Header({ signer, setSigner }: HeaderProps) {
   const connectWallet = async () => {
     try {
       if (!window.ethereum) {
@@ -21,8 +25,6 @@ function Header() {
     }
   };
 
-  useEffect(() => console.log(signer, [signer]));
-
   return (
     <Box as="header" bgColor="blue.100" p={4}>
       <Flex maxW={1024} mx="auto" bgColor="red.100" alignItems="center" justifyContent="space-between">
@@ -32,8 +34,9 @@ function Header() {
         </Flex>
         <Box>
           {signer ? (
-            <Text bgColor={"green.300"} px={2} py={1} cursor={"pointer"} onClick={() => setSigner(null)}>
-              {signer.address.substring(0, 7)}...{signer.address.substring(signer.address.length - 5)}
+            <Text bgColor="green.300" px={2} py={1} cursor="pointer" onClick={() => setSigner(null)}>
+              {signer.address.substring(0, 7)}...
+              {signer.address.substring(signer.address.length - 5)}
             </Text>
           ) : (
             <Button colorPalette="green" onClick={connectWallet}>
