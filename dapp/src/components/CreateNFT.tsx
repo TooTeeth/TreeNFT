@@ -2,6 +2,7 @@ import { Button, Flex, Text } from "@chakra-ui/react";
 import { Contract } from "ethers";
 import { useState } from "react";
 import SuccessDialog from "./SuccessDialog";
+import { containerStyle } from "./Main";
 
 interface CreateNFTProps {
   treeNFTContract: Contract | null;
@@ -17,7 +18,8 @@ function CreateNFT({ treeNFTContract }: CreateNFTProps) {
     setIsLoading(true);
 
     try {
-      const tx = await treeNFTContract.mintNFT(import.meta.env.VITE_METADATA_URL);
+      /*const tx = await treeNFTContract.mintNFT(import.meta.env.VITE_METADATA_URL); TreeNFTABI.json*/
+      const tx = await treeNFTContract.mintNFT(); /*TreeNFTABI2.json */
 
       await tx.wait();
 
@@ -31,7 +33,7 @@ function CreateNFT({ treeNFTContract }: CreateNFTProps) {
 
   return (
     <>
-      <Flex maxW={1024} mx="auto" bgColor="purple.100" flexDir="column" flexGrow={1} alignItems="center" gap={2}>
+      <Flex {...containerStyle}>
         <Text bgGradient="to-r" gradientFrom="green.200" gradientTo="blue.200" fontSize={["2xl", "3xl", "4xl", "5xl"]} fontWeight="semibold" px={8} py={2} rounded="md">
           자연을 지켜주세요!
         </Text>
